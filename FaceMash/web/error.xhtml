@@ -1,0 +1,43 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:ui="http://java.sun.com/jsf/facelets">
+    <ui:include src="head.xhtml" />
+    <h:body>
+        <div class="topbar">
+            <div class="fill">
+                <div class="container">
+                    <h:form>
+                        <h:commandLink styleClass="brand" action="#{applicationController.backToIndex()}" value="FaceMash"/>
+                        <ul class="nav">
+                            <li>
+                                <h:commandLink action="#{applicationController.backToIndex()}" value="Home"/>
+                            </li>
+                            <li>
+                                <h:commandLink action="#{applicationController.stats()}" value="Statistics"/>
+                            </li>
+                        </ul>
+                    </h:form>
+                </div>
+            </div>
+        </div>
+        <div class="container">
+            <div class="content">
+                <div class="page-header">
+                    <h1>Error !!!</h1>
+                </div>
+                <div class="row">
+                    <div class="alert-message error">
+                        <a class="close" href="#">×</a>
+                        <p><h:outputText value="#{errorModel.message}" /></p>
+                    </div>
+                </div>
+            </div>
+            <footer>
+                <p>&copy; Université de la Rochelle 2011</p>
+            </footer>
+        </div>
+    </h:body>
+</html>
+

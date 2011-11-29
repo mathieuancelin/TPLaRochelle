@@ -1,0 +1,62 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:ui="http://java.sun.com/jsf/facelets">
+    <ui:include src="head.xhtml" />
+    <h:body>
+        <div class="topbar">
+            <div class="fill">
+                <div class="container">
+                    <h:form>
+                        <h:commandLink styleClass="brand" action="#{applicationController.backToIndex()}" value="FaceMash"/>
+                        <ul class="nav">
+                            <li class="active">
+                                <h:commandLink action="#{applicationController.backToIndex()}" value="Home"/>
+                            </li>
+                            <li>
+                                <h:commandLink action="#{applicationController.stats()}" value="Statistics"/>
+                            </li>
+                        </ul>
+                    </h:form>
+                </div>
+            </div>
+        </div>
+        <div class="hide">
+            <h:outputText value="#{applicationController.title}" /> 
+        </div>
+        <div class="container">
+            <div class="content">
+                <div class="row">
+                    <h:form>
+                        <div class="row">
+                            <div class="span12">
+                                <div class="row">
+                                    <div class="span4">
+                                        <div class="rank">pts. <b><h:outputText value="#{elo.get(applicationModel.face1.id)}"/></b></div><br/>
+                                        <h:commandLink action="#{applicationController.pickAFace(applicationModel.face1.id, 1)}">
+                                            <h:graphicImage url="#{applicationModel.face1.url}" width="225px" height="350px"/>
+                                        </h:commandLink>
+                                    </div>
+                                    <div class="span1 half">
+                                        <h1>or</h1>
+                                    </div>
+                                    <div class="span4">
+                                        <div class="rank">pts. <b><h:outputText value="#{elo.get(applicationModel.face2.id)}"/></b></div><br/>
+                                        <h:commandLink action="#{applicationController.pickAFace(applicationModel.face2.id, 2)}">
+                                            <h:graphicImage url="#{applicationModel.face2.url}" width="225px" height="350px"/>
+                                        </h:commandLink> 
+                                    </div>
+                                </div>
+                            </div>
+                        </div>                           
+                    </h:form>
+                </div>
+            </div>
+            <footer>
+                <p>&copy; Université de la Rochelle 2011</p>
+            </footer>
+        </div>
+    </h:body>
+</html>
+
