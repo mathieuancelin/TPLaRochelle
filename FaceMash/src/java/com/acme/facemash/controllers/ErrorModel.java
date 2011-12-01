@@ -2,6 +2,11 @@ package com.acme.facemash.controllers;
 
 import javax.enterprise.inject.Model;
 
+/**
+ * This model is used to pass error messages to error view.
+ * 
+ * @author mathieuancelin
+ */
 @Model
 public class ErrorModel {
     

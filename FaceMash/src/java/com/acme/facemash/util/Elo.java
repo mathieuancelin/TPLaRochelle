@@ -5,6 +5,11 @@ import java.util.concurrent.ConcurrentHashMap;
 import javax.enterprise.context.ApplicationScoped;
 import javax.inject.Named;
 
+/**
+ * Bean usign Elo formula to compute faces score.
+ * 
+ * @author mathieuancelin
+ */
 @Named
 @ApplicationScoped
 public class Elo {

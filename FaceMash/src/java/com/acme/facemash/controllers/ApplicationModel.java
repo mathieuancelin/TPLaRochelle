@@ -6,6 +6,11 @@ import java.util.List;
 import javax.enterprise.context.SessionScoped;
 import javax.inject.Named;
 
+/**
+ * This model is used to pass view data to application view.
+ * 
+ * @author mathieuancelin
+ */
 @Named
 @SessionScoped
 public class ApplicationModel implements Serializable {

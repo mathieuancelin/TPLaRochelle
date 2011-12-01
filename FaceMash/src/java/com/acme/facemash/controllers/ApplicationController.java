@@ -15,8 +15,14 @@ import javax.inject.Inject;
 import javax.inject.Named;
 import javax.persistence.EntityManager;
 
-@RequestScoped
+/**
+ * Main controller for the app.
+ * Is responsible for pick logic and stats logic.
+ * 
+ * @author mathieuancelin
+ */
 @Named
+@RequestScoped
 public class ApplicationController {
 
     @Inject EntityManager em;
@@ -31,6 +37,8 @@ public class ApplicationController {
     
     private String title = "Who's the cutest ?";
     
+    private static final String REDIRECT_SUFFIX = ".xhtml?faces-redirect=true";
+    
     @PostConstruct
     public void index() {
         if (model.getFace1() == null && model.getFace2() == null) {
@@ -42,7 +50,7 @@ public class ApplicationController {
     }
     
     public String backToIndex() {
-        return "index.xhtml?faces-redirect=true";
+        return redirectToView("index");
     }
 
     public String pickAFace(final Long id, final Long panelId) {
@@ -56,16 +64,16 @@ public class ApplicationController {
             public String apply(Unit arg) {
                 if (id == null) {
                     error.setMessage("No valid id specified");
-                    return "error.xhtml?faces-redirect=true";
+                    return redirectToView("error");
                 }
                 if (panelId == null) {
                     error.setMessage("No panel id specified");
-                    return "error.xhtml?faces-redirect=true";
+                    return redirectToView("error");
                 }
                 Face face = Face.findById(em, id);
                 if (face == null) {
                     error.setMessage("Unable to find face at " + id);
-                    return "error.xhtml?faces-redirect=true";
+                    return redirectToView("error");
                 }
                 face.picked(em);
                 Face newFace = Face.randomFace(em, face.getId());
@@ -76,7 +84,7 @@ public class ApplicationController {
                     model.setFace2(face);
                     model.setFace1(newFace);
                 }
-                return "index.xhtml?faces-redirect=true";
+                return redirectToView("index");
             }
         };
         return boundary.apply(function, Unit.INSTANCE);
@@ -92,7 +100,7 @@ public class ApplicationController {
         List<Face> originalList = Face.all(em);
         Collections.sort(originalList, Collections.reverseOrder(byPicked));
         model.setFaces(originalList);
-        return "stats.xhtml?faces-redirect=true";
+        return redirectToView("stats");
     }
 
     public String getTitle() {
@@ -101,5 +109,9 @@ public class ApplicationController {
 
     public void setTitle(String title) {
         this.title = title;
+    }
+    
+    public static String redirectToView(String viewName) {
+        return viewName + REDIRECT_SUFFIX;
     }
 }

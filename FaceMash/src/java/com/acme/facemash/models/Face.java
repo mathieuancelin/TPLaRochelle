@@ -9,6 +9,13 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 
+/**
+ * Entity class for a Face. 
+ * Each face has an url for the photo
+ * and the number of time this face has been chosen by the user.
+ * 
+ * @author mathieuancelin
+ */
 @Entity
 public class Face implements Serializable {
     
@@ -90,7 +97,9 @@ public class Face implements Serializable {
         return this;
     }
     
-    //////////////////////
+    ////////////////////////////////////////////////////////////////////////////
+    
+    ////////////////////////////////////////////////////////////////////////////
 
     public Long getId() {
         return id;

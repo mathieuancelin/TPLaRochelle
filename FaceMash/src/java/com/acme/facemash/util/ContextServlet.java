@@ -7,6 +7,11 @@ import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 
+/**
+ * Servlet trick to get img folder real path and give it to bootstrap
+ * 
+ * @author mathieuancelin
+ */
 @WebServlet(name = "ContextServlet", urlPatterns = {"/ContextServletDoNotUse"}, loadOnStartup=1)
 public class ContextServlet extends HttpServlet {
 

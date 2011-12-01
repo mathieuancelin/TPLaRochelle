@@ -1,17 +1,21 @@
 package com.acme.facemash;
 
 import com.acme.facemash.models.Face;
-import com.acme.facemash.util.Elo;
 import java.io.File;
 import java.io.FilenameFilter;
 import java.util.concurrent.atomic.AtomicBoolean;
 import javax.ejb.Schedule;
 import javax.ejb.Singleton;
 import javax.ejb.Startup;
-import javax.inject.Inject;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 
+/**
+ * Register any image from the img folder as a Face in database.
+ * Use some trick with a servlet to find the img folder.
+ * 
+ * @author Mathieu ANCELIN
+ */
 @Startup
 @Singleton
 public class ApplicationBootstrap {
@@ -21,16 +25,12 @@ public class ApplicationBootstrap {
     public static final String PREFIX = "/img/";
     
     @PersistenceContext EntityManager em;
-    
-    @Inject Elo elo;
-    
+        
     private String imgPath;
     
     private AtomicBoolean registered = new AtomicBoolean(false);
-    
-//    String.format("%s%02d%s", PREFIX, i, EXTENSION)
-    
-    public void findAndRegisterImages(String path) {
+        
+    private void findAndRegisterImages(String path) {
         File imgDir = new File(path);
         File[] imgs = imgDir.listFiles(new FilenameFilter() {
             @Override
@@ -46,7 +46,7 @@ public class ApplicationBootstrap {
         em.flush();
     }
     
-    public void persistOne(String name) {
+    private void persistOne(String name) {
         Face face = new Face();
         face.setUrl(name);
         face.setPicked(0);
@@ -54,7 +54,7 @@ public class ApplicationBootstrap {
     }
     
     @Schedule(second="*", minute="*", hour="*")
-    public void scanImages() {
+    protected void scanImages() {
         if (imgPath != null && !registered.get()) {
             findAndRegisterImages(imgPath);
             registered.getAndSet(true);

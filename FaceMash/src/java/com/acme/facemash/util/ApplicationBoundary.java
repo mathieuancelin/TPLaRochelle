@@ -3,6 +3,11 @@ package com.acme.facemash.util;
 import com.acme.facemash.util.Functionnal.Function;
 import javax.ejb.Stateless;
 
+/**
+ * Some kind of boundary EJB to perform actions within a transaction.
+ * 
+ * @author mathieuancelin
+ */
 @Stateless
 public class ApplicationBoundary {
     
