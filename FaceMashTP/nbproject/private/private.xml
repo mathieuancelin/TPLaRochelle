@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project-private xmlns="http://www.netbeans.org/ns/project-private/1">
+    <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/1"/>
+    <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/1">
+        <file>file:/Users/mathieuancelin/Desktop/UnivLR/TPLaRochelle/FaceMash/src/java/com/acme/facemash/ApplicationBootstrap.java</file>
+        <file>file:/Users/mathieuancelin/Desktop/UnivLR/TPLaRochelle/FaceMash/src/java/com/acme/facemash/util/ApplicationBoundary.java</file>
+        <file>file:/Users/mathieuancelin/Desktop/UnivLR/TPLaRochelle/FaceMash/src/java/com/acme/facemash/util/ContextServlet.java</file>
+        <file>file:/Users/mathieuancelin/Desktop/UnivLR/TPLaRochelle/FaceMash/src/java/com/acme/facemash/util/Elo.java</file>
+        <file>file:/Users/mathieuancelin/Desktop/UnivLR/TPLaRochelle/FaceMash/src/java/com/acme/facemash/util/Functionnal.java</file>
+        <file>file:/Users/mathieuancelin/Desktop/UnivLR/TPLaRochelle/FaceMash/src/java/com/acme/facemash/util/ProducerUtils.java</file>
+        <file>file:/Users/mathieuancelin/Desktop/UnivLR/TPLaRochelle/FaceMash/src/java/com/acme/facemash/models/Face.java</file>
+        <file>file:/Users/mathieuancelin/Desktop/UnivLR/TPLaRochelle/FaceMash/src/java/com/acme/facemash/controllers/ErrorModel.java</file>
+        <file>file:/Users/mathieuancelin/Desktop/UnivLR/TPLaRochelle/FaceMash/src/java/com/acme/facemash/controllers/ApplicationModel.java</file>
+        <file>file:/Users/mathieuancelin/Desktop/UnivLR/TPLaRochelle/FaceMash/src/java/com/acme/facemash/controllers/ApplicationController.java</file>
+    </open-files>
+</project-private>

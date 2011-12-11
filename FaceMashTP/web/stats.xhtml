@@ -1,0 +1,54 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:ui="http://java.sun.com/jsf/facelets">
+    <ui:include src="head.xhtml" />
+    <h:body>
+        <div class="topbar">
+            <div class="fill">
+                <div class="container"> 
+                    <h:form>
+                        <h:commandLink styleClass="brand" action="#{applicationController.backToIndex()}" value="FaceMash"/>
+                        <ul class="nav">
+                            <li>
+                                <h:commandLink action="#{applicationController.backToIndex()}" value="Home"/>
+                            </li>
+                            <li class="active">
+                                <h:commandLink action="#{applicationController.stats()}" value="Statistics"/>
+                            </li>
+                        </ul>
+                    </h:form>
+                </div>
+            </div>
+        </div>
+        <div class="container">
+            <div class="content">
+                <div class="row">
+                    <ul class="jcarousel-skin-tango" id="mycarousel">
+                        <ui:repeat value="#{applicationModel.faces}" var="face">
+                            <li>
+                                TODO : afficher nombre de votes / nombre de points
+                                TODO : afficher image avec width="225px" et height="350px"
+                            </li>
+                        </ui:repeat>
+                    </ul>
+                </div>
+            </div>
+            <footer>
+                <p>&copy; Université de la Rochelle 2011</p>
+            </footer>
+        </div>
+        <script type="text/javascript">
+            jQuery(document).ready(function() {
+                jQuery('#mycarousel').jcarousel({
+                    wrap: 'circular',
+                    animation: 1000,
+                    visible: 2,
+                    scroll: 2
+                });
+            });
+        </script>
+    </h:body>
+</html>
+
