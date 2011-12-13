@@ -1,0 +1,129 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html>
+	<head>
+		<meta name="Format" content="complete" />
+	</head>
+<body>
+<h1 id="facemash">FaceMash</h1>
+
+<h2 id="lapplication">L&#8217;application</h2>
+
+<p>L&#8217;application à réaliser durant ce TP est tirée du film The Social Network de David Fincher. Pour ceux qui n&#8217;auraient pas eu l&#8217;occasion de le voir, ce film relate la naissance du site Facebook. Une des première séquence de ce film relate la création d&#8217;une application permettant de voter pour la plus &#8220;jolie&#8221; fille de la fac d&#8217;Harvard. Cette application, nommée FaceMash est extrêmement simple et a été créée en quelques heures dans une chambre d&#8217;étudiant. Prêt à relever le défi ?  </p>
+
+<p>La vidéo tirée du film est disponible ici : http://dl.dropbox.com/u/3121809/TSN.mp4</p>
+
+<h2 id="architecturegnrale">Architecture générale</h2>
+
+<p>La présentation du site est très simple. Deux vues principales, la page de vote et la page de scores. La page de votre est composée de deux photos &#8220;cliquables&#8221;. Un clic sur une photo correspond à un vote pour la photo en question, dans ce cas là, la photo reste inchangée, seule la seconde change. 
+La page de score est simplement la liste des photos disponibles triée par nombre de votes (ou par score).</p>
+
+<p>L&#8217;application est composée de la façon suivante:</p>
+
+<ul>
+<li>Un modèle de base de donnée, Face, représentant une photo. Ce composant est une entité JPA comportant un nombre de vote et l&#8217;URL de la photo</li>
+<li>Un contrôleur principal permettant d&#8217;afficher les photos, de voter pour l&#8217;une d&#8217;entre elles, d&#8217;afficher les scores, etc &#8230;</li>
+<li>De modèles contenant les informations à afficher dans les vues
+<em>* Un modèle pour les informations standard (photos à afficher, liste des photos, etc &#8230;)
+*</em> Un modèle pour l&#8217;affichage des erreurs</li>
+<li>D&#8217;un composant de &#8220;bootstrap&#8221; permettant de peupler la base de données par rapport aux photos contenues dans le dossier img</li>
+<li>De différentes vues JSF2 au format .xhtml</li>
+</ul>
+
+<h2 id="organisationduprojet">Organisation du projet</h2>
+
+<p>arborescence du projet une fois fini :</p>
+
+<pre><code>.....
+|
+├── src
+│   ├── conf
+│   │   ├── MANIFEST.MF
+│   │   └── persistence.xml
+│   └── java
+│       └── com
+│           └── acme
+│               └── facemash
+│                   ├── ApplicationBootstrap.java
+│                   ├── controllers
+│                   │   ├── ApplicationController.java
+│                   │   ├── ApplicationModel.java
+│                   │   └── ErrorModel.java
+│                   ├── models
+│                   │   └── Face.java
+│                   └── util
+│                       ├── ApplicationBoundary.java
+│                       ├── ContextServlet.java
+│                       ├── Elo.java
+│                       ├── Functionnal.java
+│                       └── ProducerUtils.java
+└── web
+    ├── WEB-INF
+    │   ├── beans.xml
+    │   └── web.xml
+    ├── bootstrap.css
+    ├── error.xhtml
+    ├── head.xhtml
+    ├── img
+    │   ├── cat01.jpg
+    │   ├── cat02.jpg
+    │   ├── cat03.jpg
+    │   ├── cat04.jpg
+    │   ├── cat05.jpg
+    │   ├── cat06.jpg
+    │   ├── cat07.jpg
+    │   ├── cat08.jpg
+    │   ├── cat09.jpg
+    │   ├── cat10.jpg
+    │   ├── cat11.jpg
+    │   └── cat12.jpg
+    ├── index.xhtml
+    ├── jquery-1.7.min.js
+    ├── jquery.jcarousel.min.js
+    ├── next-horizontal.png
+    ├── next-vertical.png
+    ├── prev-horizontal.png
+    ├── prev-vertical.png
+    ├── skin.css
+    └── stats.xhtml
+</code></pre>
+
+<h2 id="etapes">Etapes</h2>
+
+<h3 id="basededonnes">Base de données</h3>
+
+<p>Une base de données est nécessaire pour l&#8217;application FaceMash afin de retenir les photos disponibles et le nombre de votes pour chaque photo.</p>
+
+<p>Dans un premier temps, il va être nécessaire de créer le fichier persistence.xml. NetBeans propose un assistant permettant de générer proprement le fichier en question. Lors de la génération du fichier, choisir la datasource jdbc/__sample qui est une base de données de test disponible dans GlassFish.</p>
+
+<p>Il va ensuite être nécessaire de créer l&#8217;entité Face. Cette classe comporte deux champs, l&#8217;url de la photo et le nombre de vote pour chaque photo. N&#8217;oubliez pas de compléter les accesseurs pour chaque champs. Vous pouvez également ajouter les méthodes métier relative à l&#8217;entité Face (récupérer une face aléatoire, récupérer toutes les entités, compter toutes les entités, voter, etc &#8230;). Vous pouvez également ajouter ces méthodes dans un bean à part.</p>
+
+<p>Il va également être nécessaire de compléter la classe ProducerUtils.java pour que le persistenceUnit utilisé soit le même que celui généré dans le fichier persistence.xml.</p>
+
+<p>Il va également être nécessaire de modifier la classe ApplicationBoostrap (méthode findAndRegisterImages) afin que celle-ci scanne le dossier img et enregistre les faces correspondantes à chaque image trouvée. Cette méthode n&#8217;est appelée qu&#8217;une fois et la classe possède le chemin du dossier img nommé &#8216;imgPath&#8217;. Pour chaque image touvée, enregistrer une instance de Face en base de données avec le nombre de vote à zéro et une url de type &#8216;/img/nomDeLimage.jpg&#8217;.</p>
+
+<h3 id="contrleuretmodles">Contrôleur et modèles</h3>
+
+<p>Le contrôler ApplicationController va être responsable des interactions avec l&#8217;utilisateur. Chaque méthode retourne une chaine de caractère correspondant à la vue vers laquelle on veut aller. Chaque méthode est censée calculer les données nécessaire à l&#8217;affichage de la vue et les mettre dans le modèle de la vue afin que ces données soient accessibles depuis la vue. Attention, pour que cette classe soit accessible depuis la vue, n&#8217;oubliez pas de l&#8217;annoter @Named. De plus, un contrôleur étant stateless par nature, il peut-être nécessaire de lui ajouter un scope de type requête (@RequestScoped).</p>
+
+<p>Les modèles sont simplement des beans accessibles depuis la vue (ne pas oublier le @Named) contenant les données de la vue courante. Le modèle de l&#8217;application est quasiment complet. Il va par contre être nécessaire de concevoir le modèle d&#8217;erreur.</p>
+
+<h3 id="vues">Vues</h3>
+
+<p>Les vues sont des fichiers .xhtml contenant des composants JSF2. Ajouter le code nécessaire pour compléter les vues.</p>
+
+<h3 id="scoreelo">Score Elo</h3>
+
+<p>La classe Elo.java contient une méthode permettant de calculer le score d&#8217;une photo par rapport à une autre (http://fr.wikipedia.org/wiki/Classement_Elo). Ajouter le code nécessaire dans votre application afin de gérer le score de chaque photo.</p>
+
+<h2 id="pourlesplusrapides">Pour les plus rapides</h2>
+
+<h3 id="expositionrest">Exposition REST</h3>
+
+<p>Exposer les différentes fonctions majeures de l&#8217;application via des services de type REST envoyant des données sous forme de JSON.</p>
+
+<h3 id="clienthtmljs">Client HTML/JS</h3>
+
+<p>Créer un petit client HTML/JS pour consommer les services REST de l&#8217;application.</p>
+</body>
+</html>

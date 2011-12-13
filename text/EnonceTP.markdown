@@ -29,60 +29,58 @@ Organisation du projet
 
 arborescence du projet une fois fini :
 
-`
-.....
-|
-├── src
-│   ├── conf
-│   │   ├── MANIFEST.MF
-│   │   └── persistence.xml
-│   └── java
-│       └── com
-│           └── acme
-│               └── facemash
-│                   ├── ApplicationBootstrap.java
-│                   ├── controllers
-│                   │   ├── ApplicationController.java
-│                   │   ├── ApplicationModel.java
-│                   │   └── ErrorModel.java
-│                   ├── models
-│                   │   └── Face.java
-│                   └── util
-│                       ├── ApplicationBoundary.java
-│                       ├── ContextServlet.java
-│                       ├── Elo.java
-│                       ├── Functionnal.java
-│                       └── ProducerUtils.java
-└── web
-    ├── WEB-INF
-    │   ├── beans.xml
-    │   └── web.xml
-    ├── bootstrap.css
-    ├── error.xhtml
-    ├── head.xhtml
-    ├── img
-    │   ├── cat01.jpg
-    │   ├── cat02.jpg
-    │   ├── cat03.jpg
-    │   ├── cat04.jpg
-    │   ├── cat05.jpg
-    │   ├── cat06.jpg
-    │   ├── cat07.jpg
-    │   ├── cat08.jpg
-    │   ├── cat09.jpg
-    │   ├── cat10.jpg
-    │   ├── cat11.jpg
-    │   └── cat12.jpg
-    ├── index.xhtml
-    ├── jquery-1.7.min.js
-    ├── jquery.jcarousel.min.js
-    ├── next-horizontal.png
-    ├── next-vertical.png
-    ├── prev-horizontal.png
-    ├── prev-vertical.png
-    ├── skin.css
-    └── stats.xhtml
-`
+    .....
+    |
+    ├── src
+    │   ├── conf
+    │   │   ├── MANIFEST.MF
+    │   │   └── persistence.xml
+    │   └── java
+    │       └── com
+    │           └── acme
+    │               └── facemash
+    │                   ├── ApplicationBootstrap.java
+    │                   ├── controllers
+    │                   │   ├── ApplicationController.java
+    │                   │   ├── ApplicationModel.java
+    │                   │   └── ErrorModel.java
+    │                   ├── models
+    │                   │   └── Face.java
+    │                   └── util
+    │                       ├── ApplicationBoundary.java
+    │                       ├── ContextServlet.java
+    │                       ├── Elo.java
+    │                       ├── Functionnal.java
+    │                       └── ProducerUtils.java
+    └── web
+        ├── WEB-INF
+        │   ├── beans.xml
+        │   └── web.xml
+        ├── bootstrap.css
+        ├── error.xhtml
+        ├── head.xhtml
+        ├── img
+        │   ├── cat01.jpg
+        │   ├── cat02.jpg
+        │   ├── cat03.jpg
+        │   ├── cat04.jpg
+        │   ├── cat05.jpg
+        │   ├── cat06.jpg
+        │   ├── cat07.jpg
+        │   ├── cat08.jpg
+        │   ├── cat09.jpg
+        │   ├── cat10.jpg
+        │   ├── cat11.jpg
+        │   └── cat12.jpg
+        ├── index.xhtml
+        ├── jquery-1.7.min.js
+        ├── jquery.jcarousel.min.js
+        ├── next-horizontal.png
+        ├── next-vertical.png
+        ├── prev-horizontal.png
+        ├── prev-vertical.png
+        ├── skin.css
+        └── stats.xhtml
 
 Etapes
 ---------------------
